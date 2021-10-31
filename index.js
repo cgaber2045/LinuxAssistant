@@ -9,28 +9,28 @@ const LaunchRequestHandler = {
       return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-      const speechText = 'Welcome to your SDK weather skill. Ask me the weather!';
+      const speechText = 'Welcome to your SDK LinuxAssistant skill. Ask me to start your backups!';
   
       return handlerInput.responseBuilder
         .speak(speechText)
         .reprompt(speechText)
-        .withSimpleCard('Welcome to your SDK weather skill. Ask me the weather!', speechText)
+        .withSimpleCard('Welcome to your SDK LinuxAssistant skill. Ask me to start your backups!', speechText)
         .getResponse();
     }
 };
 
 // The following code configures a handler that Alexa invokes when the user asks for the weather.
-const AskWeatherIntentHandler = {
+const StartBackupIntentHandler = {
     canHandle(handlerInput) {
       return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-        && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AskWeatherIntent';
+        && Alexa.getIntentName(handlerInput.requestEnvelope) === 'StartBackupIntent';
     },
     handle(handlerInput) {
-      const speechText = 'The weather today is sunny.';
-  
+      const speechText = 'Starting your backups!';
+      // Code to start backups...
       return handlerInput.responseBuilder
         .speak(speechText)
-        .withSimpleCard('The weather today is sunny.', speechText)
+        .withSimpleCard('Starting your backups!', speechText)
         .getResponse();
     }
   };
@@ -44,12 +44,12 @@ const AskWeatherIntentHandler = {
         && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-      const speechText = 'You can ask me the weather!';
+      const speechText = 'You can ask me to start your backups!';
   
       return handlerInput.responseBuilder
         .speak(speechText)
         .reprompt(speechText)
-        .withSimpleCard('You can ask me the weather!', speechText)
+        .withSimpleCard('You can ask me to start your backups!', speechText)
         .getResponse();
     }
 };
@@ -95,9 +95,8 @@ const SessionEndedRequestHandler = {
       skill = Alexa.SkillBuilders.custom()
         .addRequestHandlers(
           LaunchRequestHandler,
-          AskWeatherIntentHandler,
+          StartBackupIntentHandler,
           HelpIntentHandler,
-          CancelAndStopIntentHandler,
           SessionEndedRequestHandler,
         )
         .addErrorHandlers(ErrorHandler)
