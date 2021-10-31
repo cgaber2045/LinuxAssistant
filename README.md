@@ -8,7 +8,7 @@
 ## 🚀 Getting Started
 
 ```sh
-git clone https://github.com/cgaber2045/Darcoin-Bot.git
+https://github.com/cgaber2045/LinuxAssistant.git
 cd Darcoin-Bot
 npm install
 ```
