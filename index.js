@@ -8,6 +8,16 @@ AWS.config.update({region: 'us-east-1'});
 var sqs = new AWS.SQS({apiVersion: '2012-11-05'});
 const queue_url = process.env.QUEUE_URL;
 
+// Used to send commands to the SQS server.
+const sendCommand = async command => {
+  const params = {MessageBody: command, QueueUrl: queue_url};
+  // Creating the message to send to the SQS server!
+  const request = sqs.sendMessage(params);
+  const result = await request.promise();
+  if(result) console.log("Message queued to SQS successfully : ", result.MessageId);
+  else console.log("Message queued failed");
+};
+
 // When the user invokes your skill without a specific intent, 
 // Alexa sends your skill a LaunchRequest. The following code configures a 
 // handler that Alexa invokes when your skill receives a LaunchRequest.
@@ -33,9 +43,6 @@ const StartBackupIntentHandler = {
       && Alexa.getIntentName(handlerInput.requestEnvelope) === 'StartBackupIntent';
   },
   handle(handlerInput) {
-    // Sending command to SQS.
-    sendCommand("backup");
-
     const speechText = 'Starting your backups!';
     return handlerInput.responseBuilder
     .speak(speechText)
@@ -43,6 +50,11 @@ const StartBackupIntentHandler = {
     .getResponse();
   }
 };
+
+// TODO: Define all other Intent Handlers
+
+
+
 
 // The following code configures a handler that Alexa invokes when the skill 
 // receives the built-in intent AMAZON.HelpIntent. For details about how user 
@@ -104,6 +116,7 @@ exports.handler = async function (event, context) {
     skill = Alexa.SkillBuilders.custom()
       .addRequestHandlers(
         LaunchRequestHandler,
+        // TODO: Add your intent handlers here
         StartBackupIntentHandler,
         HelpIntentHandler,
         SessionEndedRequestHandler,
@@ -112,20 +125,12 @@ exports.handler = async function (event, context) {
       .create();
   }
 
+  // TODO: Declare all commands and their intent names here
+  if (event.request.intent && event.request.intent.name === "StartBackupIntent") await sendCommand("backup");
+  
+  // End command declaration
+
   const response = await skill.invoke(event, context);
   console.log(`RESPONSE++++${JSON.stringify(response)}`);
-
   return response;
 };
-
-async function sendCommand(command) {
-  // Creating the message to send to the SQS server!
-  var params = {MessageBody: command, QueueUrl: queue_url};
-  console.log("QUEUE: " + queue_url);
-  // Sending Message!
-  await sqs.sendMessage(params, function(err, data) {
-    console.log("Test 2");
-    if (err) console.log("Error", err);
-    else console.log("Success", data.MessageId);
-  }).promise();
-}

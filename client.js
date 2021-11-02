@@ -54,18 +54,11 @@ function processMessage(message) {
     case "backup":
       // Run backups
       console.log("Message Recieved: backup");
-      
       /* Do something
       exec("ls -la", (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
+        if (error) console.log(`error: ${error.message}`);
+        else if (stderr)  console.log(`stderr: ${stderr}`);
+        else console.log(`stdout: ${stdout}`);
       });
       */
 
