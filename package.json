@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "ask-sdk": "^2.11.0"
+    "ask-sdk": "^2.11.0",
+    "aws-sdk": "^2.1019.0",
+    "dotenv": "^10.0.0"
   }
 }
