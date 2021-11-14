@@ -13,4 +13,3 @@ const StartBackupIntentHandler = {
     }
 };
 
-module.exports = {StartBackupIntentHandler};

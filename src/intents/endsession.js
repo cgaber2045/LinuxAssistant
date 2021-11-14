@@ -11,4 +11,3 @@ const SessionEndedRequestHandler = {
   }
 };
 
-module.exports = {SessionEndedRequestHandler};

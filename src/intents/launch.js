@@ -16,4 +16,3 @@ const LaunchRequestHandler = {
   }
 };
 
-module.exports = {LaunchRequestHandler};

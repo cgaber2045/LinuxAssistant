@@ -16,4 +16,3 @@ const ErrorHandler = {
   }
 };
 
-module.exports = {ErrorHandler};
