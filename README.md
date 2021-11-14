@@ -12,3 +12,8 @@ git clone https://github.com/cgaber2045/LinuxAssistant.git
 cd LinuxAssistant
 npm install
 ```
+
+## Building
+```
+After creating intents, run make to build the production build.
+```

@@ -7,11 +7,12 @@ exports.handler = async function (event, context) {
   if (!skill) {
     skill = Alexa.SkillBuilders.custom()
       .addRequestHandlers(
-        LaunchRequestHandler,
         // TODO: Add your intent handlers here
+        LaunchRequestHandler,
         StartBackupIntentHandler,
         HelpIntentHandler,
         SessionEndedRequestHandler,
+        RunScriptIntentHandler
       )
       .addErrorHandlers(ErrorHandler)
       .create();
@@ -19,7 +20,7 @@ exports.handler = async function (event, context) {
 
   // TODO: Declare all commands and their intent names here
   if (event.request.intent && event.request.intent.name === "StartBackupIntent") await sendCommand("backup");
-  
+  if (event.request.intent && event.request.intent.name === "RunScriptIntent") await sendCommand(`script ${event.request.intent.slots.scriptAnswer.value}`);
   // End command declaration
 
   // Response used for debugging

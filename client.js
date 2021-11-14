@@ -51,21 +51,30 @@ function deleteMessage(reciept) {
 // Process message from SQS Queue.
 function processMessage(message) {
   switch (message) {
+
     case "backup":
       // Run backups
       console.log("Message Recieved: backup");
-      /* Do something
-      exec("ls -la", (error, stdout, stderr) => {
+      exec("rsync -ravz --partial /home/ /media/", (error, stdout, stderr) => {
         if (error) console.log(`error: ${error.message}`);
         else if (stderr)  console.log(`stderr: ${stderr}`);
         else console.log(`stdout: ${stdout}`);
       });
-      */
-
       break;
+
     default:
       console.log("Message not defined! Recieved: " + message);
       break;
+  }
+
+  if (message.includes('script ')) {
+    const script = message.split(" ")[1];
+    console.log(`Message Recieved: script ${script}`);
+    exec(`sh ${script}.sh /scripts`, (error, stdout, stderr) => {
+      if (error) console.log(`error: ${error.message}`);
+      else if (stderr)  console.log(`stderr: ${stderr}`);
+      else console.log(`stdout: ${stdout}`);
+    });
   }
 
 }
