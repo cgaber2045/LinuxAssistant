@@ -4,7 +4,7 @@ CLIENTBIN = client.js
 BIN = $(BINDIR)/$(SERVBIN) $(BINDIR)/$(CLIENTBIN)
 
 SDIR = src
-_SERVSRC = backup.js error.js help.js endsession.js launch.js script.js
+_SERVSRC = *
 SERVSRC = $(patsubst %, $(SDIR)/intents/%, $(_SERVSRC))
 
 _CLIENTSRC = 

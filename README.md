@@ -13,7 +13,19 @@ cd LinuxAssistant
 npm install
 ```
 
-## Building
-```
-After creating intents, run make to build the production build.
-```
+Set up a .env file with the following variables from SQS: ```QUEUE_URL```, ```AWS_ACCESS_KEY_ID```, ```AWS_SECRET_ACCESS_KEY```
+
+## 💡 Building
+
+1. After creating intents, create a prod folder in the main directory.
+2. Run ```make``` to build the production build.
+3. The built files should be located under /prod/.
+
+## 🤝 Contributing
+1. [Fork the repository](https://github.com/cgaber2045/LinuxAssistant/fork)
+2. Clone your fork: `git clone https://github.com/your-username/LinuxAssistant.git`
+3. Create your feature branch: `git checkout -b my-new-feature`
+4. Stage changes `git add .`
+5. Commit your changes: `git commit`
+6. Push to the branch: `git push origin my-new-feature`
+7. Submit a pull request
