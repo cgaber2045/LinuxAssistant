@@ -44,7 +44,6 @@ function deleteMessage(reciept) {
   };
   sqs.deleteMessage(deleteParams, function(err, data) {
     if (err) console.log("Delete Error", err);
-    else console.log("Message Deleted", data);
   });
 }
 
