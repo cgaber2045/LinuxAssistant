@@ -12,7 +12,8 @@ exports.handler = async function (event, context) {
         StartBackupIntentHandler,
         HelpIntentHandler,
         SessionEndedRequestHandler,
-        RunScriptIntentHandler
+        RunScriptIntentHandler,
+        LogRotateIntentHandler
       )
       .addErrorHandlers(ErrorHandler)
       .create();
@@ -20,6 +21,7 @@ exports.handler = async function (event, context) {
 
   // TODO: Declare all commands and their intent names here
   if (event.request.intent && event.request.intent.name === "StartBackupIntent") await sendCommand("backup");
+  if (event.request.intent && event.request.intent.name === "LogRotateIntent") await sendCommand("logrotate");
   if (event.request.intent && event.request.intent.name === "RunScriptIntent") await sendCommand(`script ${event.request.intent.slots.scriptAnswer.value}`);
   // End command declaration
 
